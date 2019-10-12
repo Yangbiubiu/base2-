@@ -1,0 +1,26 @@
+<!-- 小程序中也具有类似vue的指令 它称为控制属性 -->
+<view>{{msg}}</view>
+<!-- 求和 -->
+<view>{{a+b}}</view>
+<view>{{flag ? '是' : '否'}}</view>
+
+<!-- 支持访问 对象{}、【】数组、. 的属性 -->
+<view>{{user.age}}</view>
+<view>{{list}}</view>
+<view>{{user['name']}}</view>
+<!-- 根据索引值找数组数据 -->
+<view>{{list[2]}}</view>
+
+<!-- wx:for wx:key练习 index为属性名 item为属性值  -->
+<view>
+<text wx:key="*this" wx:for="{{user}}">{{index + 1}}:{{item}}</text>
+</view>
+  <!-- 小程序中只要是 data 中的数据，都需要添加 {{}} -->
+  <!-- 小程序中默认情况下使用 item 访问数组中的单元值 -->
+  <!-- 小程序中默认情况下使用 index 访问数组中的索引值 -->
+<view>
+<text>{{}}</text>
+
+
+</view>
+
