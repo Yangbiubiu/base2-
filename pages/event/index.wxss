@@ -1,1 +1,29 @@
 /* pages/event/index.wxss */
+page{
+    padding: 40rpx;
+    /* 设置了box-sizing: border-box;后再设置padding盒子不会被撑开只会向盒子里边挤内容 */
+    box-sizing: border-box;
+}
+
+button{
+    margin: 40rpx;
+}
+
+input {
+    border: 1rpx solid red;
+    height: 80rpx;
+    border-radius: 8rpx;
+    padding-left: 16rpx;
+  }
+  .parent {
+    width: 300rpx;
+    height: 300rpx;
+    background-color: pink;
+  }
+  
+  .child {
+    margin-top: 40rpx;
+    width: 150rpx;
+    height: 150rpx;
+    background-color: red;
+  }

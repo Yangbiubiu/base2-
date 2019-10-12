@@ -1,1 +1,41 @@
-<view>事件</view>
+<view>学习在小程序中添加事件监听</view>
+
+<view>{{msg}}</view>
+
+<!--type="primary" 改变点一下按钮的背景颜色样式 -->
+<!-- 小程序中添加事件监听的语法为 bind事件名称="回调函数" 例如:（冒号可省略）bind事件名/bind:事件名/click/@click/事件名="xxx/方法名" -->
+<!-- tap和都是点击事件  如果是鼠标触发的用click 如果是手指头触发的用tap -->
+<button  type="primary" bind:tap="clicked">点一下</button>
+<!-- 小程序中添加事件监听的语法bind 冒号可省略 bind事件名称="回调函数" 
+例如:bind事件名="xxx/方法名" 
+凡是以“ data-自定属性名 ”开头的属性都是一个自定义属性 -->
+<button data-role="这是一个自定义属性"  type="primary" bind:tap="clicked">点一下</button>
+
+<!-- 表单组件（默认无边框，无背景）
+bind:focus="in"获得焦点事件
+bind:blur="out"失去焦点事件 
+   in/out为自定义方法名 -->
+<input  bind:focus="in"  bind:blur="out" type="text"/>
+
+<!-- 小程序中也同样存在了冒泡现象 子盒子点击父盒子也被触发（冒泡了）-->
+<view class="parent" bind:tap="parent">
+  <view class="child" bind:tap="child"></view>
+</view>
+
+<!-- 小程序可以通过 catch 添加事件监听来阻止冒泡的产生
+catch与bind都可以添加事件监听（就是事件名和方法们） 区别是catch不存在冒泡现象 -->
+<view class="parent" bind:tap="parent">
+    <view class="child" catch:tap="parent"></view>
+  <view class="child" catch:tap="child"></view>
+</view>
+
+<!-- 小程序还可以支持捕获模式 capture -->
+<view class="parent"  capture-bind:tap="parent">
+  <view class="child" capture-bind:tap="child"></view>
+</view>
+
+<!-- 小程序还可以阻止捕获 -->
+<view class="parent" capture-catch:tap="parent">
+  <view class="child" capture-catch:tap="child"></view>
+  <view class="child" catch:tap="child"></view>
+</view>
