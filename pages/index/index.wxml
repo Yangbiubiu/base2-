@@ -13,14 +13,64 @@
 
 <!-- wx:for wx:key练习 index为属性名 item为属性值  -->
 <view>
-<text wx:key="*this" wx:for="{{user}}">{{index + 1}}:{{item}}</text>
-</view>
   <!-- 小程序中只要是 data 中的数据，都需要添加 {{}} -->
-  <!-- 小程序中默认情况下使用 item 访问数组中的单元值 -->
+  <!-- 小程序中默认情况下使用 item 访问数组中的单元值         支持运算{{index + 1}} -->
   <!-- 小程序中默认情况下使用 index 访问数组中的索引值 -->
+<text wx:key="*this" wx:for="{{list}}">{{index + 1}}：{{item}} </text>
+</view>
+
 <view>
-<text>{{}}</text>
+<!-- 小程序中通过 wx:for-item 修改默认的单元值的访问变量 例如：wx:for-item="xxx/value/abc" wx:for-item=自定义变量名 -->
+  <!-- 小程序中通过 wx:for-index 修改默认的索引值的访问变量 wx:for-index=自定义变量名 -->
+<text wx:key="*this" wx:for-index="key" wx:for-item="value" wx:for="{{list}}"> {{key + 1}}. {{value}} </text>
+</view>
 
+<view wx:key="*this" wx:for="{{list}}" wx:for-index="abcd" wx:for-item="lala" >
+<text>{{abcd}}</text>
+<text>{{lala}}</text>
+</view>
 
+<view class="item">
+  <text>序号</text>
+  <text>姓名</text>
+  <text>年龄</text>
+  <text>性别</text>
+  <text>成年</text>
+  <text>批准</text>
+</view>
+
+<view class="item" wx:key="*this" wx:for="{{students}}" wx:for-index="abc">
+<text>{{abc}}</text>
+  <text>{{item.name}}</text>
+  <text>{{item.age}}</text>
+  <text>{{item.gender}}</text>
+
+<!-- wx:if和wx:else-->
+  <!-- <text wx:if="{{item.age >= 18}}">是</text>
+  <text wx:else>否</text>
+  <text wx:if="{{item.age >= 18}}">是</text>
+  <text wx:else>否</text> -->
+
+  <!-- 优化代码 为了控制逻辑去增加删减盒子不行 得考虑下盒子的布局-->
+  <!-- 1. block 标签不会被渲染到页面中，去增加删减盒子不会影响盒子的布局样式-->
+  <!-- 2. 其作用常用来集中控制逻辑 -->
+   <block wx:if="{{item.age >= 18}}">
+    <text>是</text>
+    <text>是</text>
+  </block>
+
+  <block wx:else>
+    <text>否</text>
+    <text>否</text>
+  </block>
+</view>
+
+<view>
+<!-- hidden 属性是控制元素是否 可见的
+ hidden="{{true}}"为不可见
+ hidden="{{flase}}"为可见
+作用类似Vue中的v-show -->
+<!-- 小程序中如果属性的值为布尔类型，只要有这个属性即为 true -->
+<view hidden="{{flase}}">你能看见我吗？</view>
 </view>
 
